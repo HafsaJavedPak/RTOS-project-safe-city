@@ -1,4 +1,4 @@
-#include <stdio.h>
+`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -6,7 +6,7 @@
  
 int main(){
  
-  char *ip = "127.0.0.1";
+  char *ip = "193.168.0.1";
   int port = 5566;
  
   int sock;
@@ -28,6 +28,11 @@ int main(){
   addr.sin_addr.s_addr = inet_addr(ip);
  
   connect(sock, (struct sockaddr*)&addr, sizeof(addr));
+  // int n1 = connect(sock, (struct sockaddr*)&addr, sizeof(addr));
+  // if (n1 < 0) {
+  //   printf("fauled to connect to server %s",ip);
+  //   exit(1);
+  // }
   printf("Connected to the server.\n");
  
   bzero(buffer, 1024);
