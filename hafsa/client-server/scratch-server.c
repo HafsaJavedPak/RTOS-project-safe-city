@@ -14,7 +14,7 @@ void error (const char *msg) {
     exit(1);
 }
 
-int main (int argc, char *argv ) {
+int main (int argc, char *argv[] ) {
     if (argc < 2) {
         error("port not provided\n");
     }
@@ -65,16 +65,16 @@ int main (int argc, char *argv ) {
 
         printf("Client : %s\n",buffer);
 
-        bzero(buffer,255);
-        // stdio.h, read btes from string???
-        fgets(buffer, 250, stdin);
+        // bzero(buffer,255);
+        // // stdio.h, read btes from string???
+        // fgets(buffer, 250, stdin);
         
-        // write to client from server
-        // how does server write???
-        n = write(newsockfd, buffer, strlen(buffer));
-        if (n < 0) {
-            error("Error on writng\n");
-        }
+        // // write to client from server
+        // // how does server write???
+        // n = write(newsockfd, buffer, strlen(buffer));
+        // if (n < 0) {
+        //     error("Error on writng\n");
+        // }
 
         int i = strncmp("Bye", buffer, 3);
         

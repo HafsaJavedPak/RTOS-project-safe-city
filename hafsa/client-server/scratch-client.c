@@ -14,7 +14,7 @@ void error (const char *msg) {
     exit(1);
 }
 
-int main (int argc, char *argv ) {
+int main (int argc, char *argv[] ) {
     if (argc < 3) {
         error("ip adress or port num not provided\n");
     }
@@ -43,11 +43,13 @@ int main (int argc, char *argv ) {
     server_addr.sin_family = AF_INET;
     // it will copy n bytes from server to  serv_adress 
     // ???? h_addrr what???
-    bcopy((char *) server->h_addr, (char *) & server_addr.sin_addr.s_addr, server->h_length);
+    // bcopy((char *) server->h_addr, (char *) & server_addr.sin_addr.s_addr, server->h_length);
+    bcopy((char *) server->h_addr_list[0], (char *) &server_addr.sin_addr.s_addr, server->h_length);
+
 
     server_addr.sin_port = htons(portno);
 
-    if (connect(sockfd, (struct sockaddr *)  &server_addr, sizeof(server_addr) < 0)) {
+    if (connect(sockfd, (struct sockaddr *)  &server_addr, sizeof(server_addr)) < 0) {
         error("Connection failed\n");
     }
 
@@ -61,15 +63,15 @@ int main (int argc, char *argv ) {
             error("Error on wroting\n");
         }
 
-        bzero(buffer, 255);
+        // bzero(buffer, 255);
 
-        n = read(sockfd, buffer, 255);
+        // n = read(sockfd, buffer, 255);
 
-        if (n < 0) {
-            error("Error on reading\n");
-        }
+        // if (n < 0) {
+        //     error("Error on reading\n");
+        // }
 
-        printf("Server : %s\n", buffer);
+        // printf("Server : %s\n", buffer);
 
         int i = strncmp("Bye", buffer, 3);
         
