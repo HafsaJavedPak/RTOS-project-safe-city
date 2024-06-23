@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+# Set timeout to -1 so the script waits indefinitely
+set timeout -1
+
+# Start the client program
+spawn ./final-client.o localhost 9080
+
+# Wait for the input prompt
+expect "Enter priority (0-3): "
+
+# Send the input "3" followed by a newline
+send "2"
+
+# Interact with the program, this will hand over control to the user
+# interact
