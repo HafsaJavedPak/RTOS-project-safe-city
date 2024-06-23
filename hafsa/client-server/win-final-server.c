@@ -97,7 +97,7 @@ void schedule_clients() {
             }
         }
         pthread_mutex_unlock(&lock);
-        Sleep(100); // Sleep to prevent busy waiting
+        Sleep(5000); // Sleep to prevent busy waiting
     }
 }
 
