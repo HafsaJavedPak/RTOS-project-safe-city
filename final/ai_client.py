@@ -7,6 +7,7 @@ import numpy as np
 import os
 import socket
 import sys
+import time
 
 
 from socket_file import socket_func, error
@@ -88,6 +89,7 @@ def model_func(sock : socket):
             # Enter priority
             # buffer = input("Enter priority (0-3): ")
             sock.sendall(buffer.encode())
+            time.sleep(0.25)
 
 
         except socket.error as err:
